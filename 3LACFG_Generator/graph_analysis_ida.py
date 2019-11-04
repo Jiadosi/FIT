@@ -167,10 +167,12 @@ def get_DMRVariables(func):  # dosi @ 11.1
 
 def calArithmeticIns(bl):
 	x86_AI = {'add':1, 'sub':1, 'div':1, 'imul':1, 'idiv':1, 'mul':1, 'shl':1, 'dec':1, 'inc':1}
-	mips_AI = {'add':1, 'addu':1, 'addi':1, 'addiu':1, 'mult':1, 'multu':1, 'div':1, 'divu':1}
+	 mips_AI = {'add':1, 'addu':1, 'addi':1, 'addiu':1, 'mult':1, 'multu':1, 'div':1, 'divu':1, 'sub':1, 'subu':1, 'mfhi':1, 'mflo':1}  # dosi @11.4
+ 	arm_AI = {'add':1, 'adc':1, 'sub':1, 'sbc':1, 'mul':1, 'mla':1, 'umull':1, 'umlal':1, 'smull':1, 'smlal':1}  # dosi @11.4
 	calls = {}
 	calls.update(x86_AI)
 	calls.update(mips_AI)
+	calls.update(arm_AI)  # dosi @11.4
 	start = bl[0]
 	end = bl[1]
 	invoke_num = 0
@@ -207,10 +209,12 @@ def calInsts(bl):
 
 def calLogicInstructions(bl):
 	x86_LI = {'and':1, 'andn':1, 'andnpd':1, 'andpd':1, 'andps':1, 'andnps':1, 'test':1, 'xor':1, 'xorpd':1, 'pslld':1}
-	mips_LI = {'and':1, 'andi':1, 'or':1, 'ori':1, 'xor':1, 'nor':1, 'slt':1, 'slti':1, 'sltu':1}
+	mips_LI = {'and':1, 'andi':1, 'or':1, 'ori':1, 'xor':1, 'nor':1, 'slt':1, 'slti':1, 'sltu':1, 'xori':1}  #dosi @11.4
+ 	arm_LI = {'and':1, 'orr':1, 'eor':1, 'bic':1, 'orn':1, 'tst':1, 'teq':1}  # dosi @11.4
 	calls = {}
 	calls.update(x86_LI)
 	calls.update(mips_LI)
+	calls.update(arm_LI)  # dosi @11.4
 	start = bl[0]
 	end = bl[1]
 	invoke_num = 0
@@ -270,6 +274,7 @@ def calTransferIns(bl):
 	calls = {}
 	calls.update(x86_TI)
 	calls.update(mips_TI)
+	calls.updat(arm_TI)  # dosi @11.4
 	start = bl[0]
 	end = bl[1]
 	invoke_num = 0
