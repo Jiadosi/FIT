@@ -282,7 +282,7 @@ def calTransferIns(bl):
 	calls = {}
 	calls.update(x86_TI)
 	calls.update(mips_TI)
-	calls.updat(arm_TI)  # dosi @11.4
+	calls.update(arm_TI)  # dosi @11.4
 	start = bl[0]
 	end = bl[1]
 	invoke_num = 0

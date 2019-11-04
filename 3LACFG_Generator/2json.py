@@ -4,13 +4,14 @@ import os
 
 from raw_graphs import *
 
-dirpath = './output/'
+dirpath = './output/'  # input path
 files = os.listdir(dirpath)
 
 for fl in files:
-    if '.ida' in fl:
-        jsonpath = '' + fl.split('.')[0] + '_features.json'
+    if 'openssl' in fl:  # input files filter
+        jsonpath = './json/' + fl.split('.ida')[0] + '_features.json'  # output path
         filepath = os.path.join(dirpath, fl)
+        print(filepath)
         with open(filepath, 'r') as f:
             cfgs = pickle.load(f)
 

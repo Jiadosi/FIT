@@ -1,7 +1,7 @@
 import pickle
 from raw_graphs import *
 
-with open('../output/local.ida', 'r') as f:
+with open('./output/openssl_1.0.1f_mips_O1.ida', 'r') as f:
     cfgs = pickle.load(f)
 
 for cfg in cfgs.raw_graph_list:

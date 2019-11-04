@@ -74,7 +74,16 @@ class raw_graph:
 		feature_vec.append(insts)
 		# of TIs7
 		insts = g.node[id_]['numTIs']
-		feature_vec.append(insts)	
+		feature_vec.append(insts)
+		# toStDis8
+		toStDis = g.node[id_]['toStDis']
+		feature_vec.append(toStDis)
+		# toEdDis9
+		toEdDis = g.node[id_]['toEdDis']
+		feature_vec.append(toEdDis)
+		# betweenness10
+		betweenness = g.node[id_]['between']
+		feature_vec.append(betweenness)
 		return feature_vec
 
 
