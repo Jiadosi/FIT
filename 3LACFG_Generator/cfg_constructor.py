@@ -10,6 +10,7 @@ from idautils import *
 from idaapi import *
 from idc import *
 from graph_analysis_ida import *
+from graph_property import *  # dosi @11.4
 
 
 def getCfg(func, externs_eas, ea_externs):
@@ -145,6 +146,8 @@ def matchseq(seqs):
 
 # def attributingRe(cfg, externs_eas, ea_externs):
 def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
+	betweenness_dict = betweeness(cfg)  # dosi @11.4 for betweenness of each node
+
 	for node_id in cfg:
 		print 'abcd', node_id
 		bl = cfg.node[node_id]['label']
@@ -169,6 +172,8 @@ def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
   		cfg.node[node_id]['toStDis'] = toStDis # eacials 11.1
   		toEdDis = getDistance(cfg, node_id, end) # eacials 11.1
   		cfg.node[node_id]['toEdDis'] = toEdDis # eacials 11.1
+
+		cfg.node[node_id]['between'] = betweenness_dict[node_id]  # dosi @11.4
 
 def attributing(cfg):
 	ga = graph_analysis()

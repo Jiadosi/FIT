@@ -2,7 +2,7 @@ import networkx as nx
 import pdb
 def betweeness(g):
 	#pdb.set_trace()
-	betweenness = nx.betweenness_centrality(g)
+	betweenness = nx.betweenness_centrality(g)  # rtype:dict
 	return betweenness
 
 def eigenvector(g):

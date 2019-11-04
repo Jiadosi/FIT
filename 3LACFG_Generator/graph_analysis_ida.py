@@ -95,6 +95,14 @@ def getTransferInsts(func):
 		sumcalls += callnum
 	return sumcalls
 
+def getArithmeticInsts(func):  # dosi @11.4
+	blocks = [(v.startEA, v.endEA) for v in FlowChart(func)]
+	sumcalls = 0
+	for bl in blocks:
+		callnum = calArithmeticIns(bl)
+		sumcalls += callnum
+	return sumcalls
+
 def getIntrs(func):
 	blocks = [(v.startEA, v.endEA) for v in FlowChart(func)]
 	sumcalls = 0
@@ -167,7 +175,7 @@ def get_DMRVariables(func):  # dosi @ 11.1
 
 def calArithmeticIns(bl):
 	x86_AI = {'add':1, 'sub':1, 'div':1, 'imul':1, 'idiv':1, 'mul':1, 'shl':1, 'dec':1, 'inc':1}
-	 mips_AI = {'add':1, 'addu':1, 'addi':1, 'addiu':1, 'mult':1, 'multu':1, 'div':1, 'divu':1, 'sub':1, 'subu':1, 'mfhi':1, 'mflo':1}  # dosi @11.4
+	mips_AI = {'add':1, 'addu':1, 'addi':1, 'addiu':1, 'mult':1, 'multu':1, 'div':1, 'divu':1, 'sub':1, 'subu':1, 'mfhi':1, 'mflo':1}  # dosi @11.4
  	arm_AI = {'add':1, 'adc':1, 'sub':1, 'sbc':1, 'mul':1, 'mla':1, 'umull':1, 'umlal':1, 'smull':1, 'smlal':1}  # dosi @11.4
 	calls = {}
 	calls.update(x86_AI)

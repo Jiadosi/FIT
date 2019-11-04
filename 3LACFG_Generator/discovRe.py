@@ -73,6 +73,10 @@ def get_discoverRe_feature(func, icfg):
     # 10 
     Globals = getGlobalVariables(func)
     features.append(Globals)
+    # dosi @11.4
+    # 11
+    Arith = getArithmeticInsts(func)
+    features.append(Arith)
 
     strings, consts = getfunc_consts(func)
     features.append(strings)
