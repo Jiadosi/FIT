@@ -16,12 +16,12 @@ def getConst(ea, offset):
 	strings = []
 	consts = []
 	optype1 = GetOpType(ea, offset)
-	if optype1 == idaapi.o_imm:
+	if optype1 == o_imm:
 		imm_value = GetOperandValue(ea, offset)
 		if 0<= imm_value <= 10:
 			consts.append(imm_value)
 		else:
-			if idaapi.isLoaded(imm_value) and idaapi.getseg(imm_value):
+			if isLoaded(imm_value) and getseg(imm_value):
 				str_value = GetString(imm_value)
 				if str_value is None:
 					str_value = GetString(imm_value+0x40000)
@@ -107,6 +107,10 @@ def getLocalVariables(func):
 	args_num = get_stackVariables(func.startEA)
 	return args_num
 
+def getGlobalVariables(func):  # dosi @ 11.1
+	args_num = get_DMRVariables(func)
+	return args_num
+
 def getBasicBlocks(func):
 	blocks = [(v.startEA, v.endEA) for v in FlowChart(func)]
 	return len(blocks)
@@ -137,7 +141,29 @@ def get_stackVariables(func_addr):
             args.append(mName)
     return len(args)
 
-
+def get_DMRVariables(func):  # dosi @ 11.1
+	#Direct memory reference = global variable
+	args = []
+	blocks = [(v.startEA, v.endEA) for v in FlowChart(func)]
+	for bl in blocks:
+		# print bl
+		start = bl[0]
+		end = bl[1]
+		inst_addr = start
+		while inst_addr < end:
+			# opcode = GetMnem(inst_addr)
+			op0 = GetOpType(inst_addr, 0)
+			op0_val = GetOperandValue(inst_addr, 0)
+			op1 = GetOpType(inst_addr, 1)
+			op1_val = GetOperandValue(inst_addr, 1)
+			# print opcode, op0, op0_val, op1, op1_val
+			inst_addr = NextHead(inst_addr)
+			if op0_val not in args and op0_val and op0 == 2:
+				args.append(op0_val)
+			if op1_val not in args and op1_val and op1 == 2:
+				args.append(op1_val)
+			# print args
+	return len(args)
 
 def calArithmeticIns(bl):
 	x86_AI = {'add':1, 'sub':1, 'div':1, 'imul':1, 'idiv':1, 'mul':1, 'shl':1, 'dec':1, 'inc':1}

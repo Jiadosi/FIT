@@ -4,8 +4,6 @@ from idautils import *
 from idaapi import *
 from idc import *
 
-import pdb
-
 import copy
 import networkx as nx
 from idautils import *
@@ -22,6 +20,10 @@ def getCfg(func, externs_eas, ea_externs):
 	i = 0
 	visited = {}
 	start_node = None
+
+	start_id = None # eacials 11.1
+ 	end_id = None # eacials 11.1
+
 	for bl in control_blocks:
 		start = control_blocks[bl][0]
 		end = control_blocks[bl][1]
@@ -36,9 +38,11 @@ def getCfg(func, externs_eas, ea_externs):
 
 		#if end in seq_blocks and GetMnem(PrevHead(end)) != 'jmp':
 		if start == func_start:
+			start_id = src_id # eacials 11.1
 			cfg.node[src_id]['c'] = "start"
 			start_node = src_node
 		if end == func_end:
+			end_id = src_id # eacials 11.1
 			cfg.node[src_id]['c'] = "end"
 		#print control_ea, 1
 		refs = CodeRefsTo(start, 0)
@@ -61,7 +65,8 @@ def getCfg(func, externs_eas, ea_externs):
 				cfg.add_edge(dst_id, src_id)
 				cfg.node[dst_id]['label'] = dst_node
 	#print "attributing"
-	attributingRe(cfg, externs_eas, ea_externs)
+	# attributingRe(cfg, externs_eas, ea_externs)
+	attributingRe(cfg, externs_eas, ea_externs, start_id, end_id)  # eacials 11.1
 	# removing deadnodes
 	#old_cfg = copy.deepcopy(cfg)
 	#transform(cfg)
@@ -138,7 +143,8 @@ def matchseq(seqs):
 		return True
 	return False
 
-def attributingRe(cfg, externs_eas, ea_externs):
+# def attributingRe(cfg, externs_eas, ea_externs):
+def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 	for node_id in cfg:
 		print 'abcd', node_id
 		bl = cfg.node[node_id]['label']
@@ -158,8 +164,11 @@ def attributingRe(cfg, externs_eas, ea_externs):
 		cfg.node[node_id]['externs'] = externs
 		numTIs = calTransferIns(bl)
 		cfg.node[node_id]['numTIs'] = numTIs
-		print 'eacials', cfg.node[node_id]['numNc'], cfg.node[node_id]['consts'], cfg.node[node_id]['strings'], cfg.node[node_id]['externs']
 
+		toStDis = getDistance(cfg, start, node_id) # eacials 11.1
+  		cfg.node[node_id]['toStDis'] = toStDis # eacials 11.1
+  		toEdDis = getDistance(cfg, node_id, end) # eacials 11.1
+  		cfg.node[node_id]['toEdDis'] = toEdDis # eacials 11.1
 
 def attributing(cfg):
 	ga = graph_analysis()
@@ -174,6 +183,14 @@ def attributing(cfg):
 	print "finishing domChecking"
 	ga.loopChecking(cfg)
 	print "finishing loopChecking"
+
+
+# eacials 11.1
+def getDistance(cfg, id1, id2):
+	try:
+		return nx.shortest_path_length(cfg, id1, id2)
+	except Exception as e:
+		return -1
 
 
 def getStmtNum(node):

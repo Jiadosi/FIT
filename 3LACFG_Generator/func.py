@@ -108,15 +108,20 @@ def get_func_sequences(ea):
 				inst_addr = NextHead(inst_addr)
 	return funcs_bodylist
 
+def dosi():
+	print 'dosi'
+
 def get_func_cfgs_c(ea):
 	binary_name = idc.GetInputFile()
+	print '2binary name', binary_name
 	raw_cfgs = raw_graphs(binary_name)
+	# print 'rawcfgs', raw_cfgs.funcname, raw_cfgs.entry
 	externs_eas, ea_externs = processpltSegs()
 	i = 0
 	for funcea in Functions(SegStart(ea)):
 		funcname = get_unified_funcname(funcea)
 		func = get_func(funcea)
-		print i
+		print i, funcname
 		i += 1
 		icfg = cfg.getCfg(func, externs_eas, ea_externs)
 		func_f = get_discoverRe_feature(func, icfg[0])
@@ -205,8 +210,8 @@ def get_stack_arg(func_addr):
 def processExternalSegs():
 	funcdata = {}
 	datafunc = {}
-	for n in xrange(idaapi.get_segm_qty()):
-		seg = idaapi.getnseg(n)
+	for n in xrange(get_segm_qty()):
+		seg = getnseg(n)
 		ea = seg.startEA
 		segtype = idc.GetSegmentAttr(ea, idc.SEGATTR_TYPE)
 		if segtype in [idc.SEG_XTRN]:
@@ -222,8 +227,8 @@ def processExternalSegs():
 def processpltSegs():
 	funcdata = {}
 	datafunc = {}
-	for n in xrange(idaapi.get_segm_qty()):
-		seg = idaapi.getnseg(n)
+	for n in xrange(get_segm_qty()):
+		seg = getnseg(n)
 		ea = seg.startEA
 		segname = SegName(ea)
 		if segname in ['.plt', 'extern', '.MIPS.stubs']:
@@ -241,8 +246,8 @@ def processpltSegs():
 def processDataSegs():
 	funcdata = {}
 	datafunc = {}
-	for n in xrange(idaapi.get_segm_qty()):
-		seg = idaapi.getnseg(n)
+	for n in xrange(get_segm_qty()):
+		seg = getnseg(n)
 		ea = seg.startEA
 		segtype = idc.GetSegmentAttr(ea, idc.SEGATTR_TYPE)
 		if segtype in [idc.SEG_DATA, idc.SEG_BSS]:

@@ -69,6 +69,10 @@ def get_discoverRe_feature(func, icfg):
     between = retrieveGP(icfg)
     #9
     features.append(between)
+    # dosi @ 11.1
+    # 10 
+    Globals = getGlobalVariables(func)
+    features.append(Globals)
 
     strings, consts = getfunc_consts(func)
     features.append(strings)
