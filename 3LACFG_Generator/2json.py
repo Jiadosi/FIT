@@ -36,7 +36,11 @@ for fl in files:
                     fvec.append(cfg.g.node[i]['v'][5]) # 'numIns'
                     fvec.append(cfg.g.node[i]['v'][6]) # 'numLIs'
                     fvec.append(cfg.g.node[i]['v'][7]) # 'numTIs'
-                    fvec.append(cfg.g.node[i]['v'][8]) # 'toStDis'
+                    toStDis = cfg.g.node[i]['v'][8]
+                    if type(toStDis) == dict:
+                        fvec.append(0) # 'toStDis'
+                    else:
+                        fvec.append(toStDis) # 'toStDis'
                     fvec.append(cfg.g.node[i]['v'][9]) # 'toEdDis'
                     fvec.append(cfg.g.node[i]['v'][10]) # 'between'
                     dic['features'].append(fvec)

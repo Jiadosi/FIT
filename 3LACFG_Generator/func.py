@@ -108,14 +108,10 @@ def get_func_sequences(ea):
 				inst_addr = NextHead(inst_addr)
 	return funcs_bodylist
 
-def dosi():
-	print 'dosi'
-
 def get_func_cfgs_c(ea):
 	binary_name = idc.GetInputFile()
 	print '2binary name', binary_name
 	raw_cfgs = raw_graphs(binary_name)
-	# print 'rawcfgs', raw_cfgs.funcname, raw_cfgs.entry
 	externs_eas, ea_externs = processpltSegs()
 	i = 0
 	for funcea in Functions(SegStart(ea)):

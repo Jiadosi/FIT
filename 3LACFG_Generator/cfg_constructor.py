@@ -149,7 +149,6 @@ def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 	betweenness_dict = betweeness(cfg)  # dosi @11.4 for betweenness of each node
 
 	for node_id in cfg:
-		print 'abcd', node_id
 		bl = cfg.node[node_id]['label']
 		numIns = calInsts(bl)
 		cfg.node[node_id]['numIns'] = numIns
@@ -192,8 +191,16 @@ def attributing(cfg):
 
 # eacials 11.1
 def getDistance(cfg, id1, id2):
+	dic = {}
 	try:
-		return nx.shortest_path_length(cfg, id1, id2)
+		if not id1 or not id2:
+			return 0
+		ret = nx.shortest_path_length(cfg, id1, id2)
+		if type(ret) == type(dic):
+			print 'id1:', id1
+			print 'id2:', id2
+			print 'cfg:', cfg
+		return ret
 	except Exception as e:
 		return -1
 
