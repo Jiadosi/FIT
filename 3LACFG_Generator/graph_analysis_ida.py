@@ -244,16 +244,16 @@ def preprocessing_rules(inst_addr):
 	for offset in [0, 1, 2]:
 		try:
 			opType = GetOpType(inst_addr, offset)
-			if opType == o_void:
+			if opType == o_void:  # 0
 				break
-			if opType == o_far or opType == o_near:
+			if opType == o_far or opType == o_near:  # 6 7
 				res += 'FOO,'
-			elif opType == o_reg:
+			elif opType == o_reg:  # 1
 				res += GetOpnd(inst_addr, offset)[1:] + ','  # remove $
-			elif opType == o_displ:
+			elif opType == o_displ:  # 4
 				res += '[{}+0]'.format(GetOpnd((inst_addr, offset).split('$')[-1][:-1])) + ','
 			else:
-				strings, consts = getConst(inst_addr, offset)
+				strings, consts = getConst(inst_addr, offset)  # 5
 				if strings and not consts:
 					res += '<STR>,'
 				elif consts and not strings:
