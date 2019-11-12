@@ -240,28 +240,28 @@ def preprocessing_rules(inst_addr):
 	res += '~'
 	# if GetMnem(inst_addr) in calls:  # if is function names
 	# 	res += 'FOO,'
-	else:
-		for offset in [0, 1, 2]:
-			try:
-				opType = GetOpType(inst_addr, offset)
-				if opType == o_void:
-					break
-				if opType == o_far or opType == o_near:
-					res += 'FOO,'
-				elif opType == o_reg:
-					res += GetOpnd(inst_addr, offset)[1:] + ','  # remove $
-				elif opType == o_displ:
-					res += '[{}+0]'.format(GetOpnd((inst_addr, offset).split('$')[-1][:-1])) + ','
+	# else:
+	for offset in [0, 1, 2]:
+		try:
+			opType = GetOpType(inst_addr, offset)
+			if opType == o_void:
+				break
+			if opType == o_far or opType == o_near:
+				res += 'FOO,'
+			elif opType == o_reg:
+				res += GetOpnd(inst_addr, offset)[1:] + ','  # remove $
+			elif opType == o_displ:
+				res += '[{}+0]'.format(GetOpnd((inst_addr, offset).split('$')[-1][:-1])) + ','
+			else:
+				strings, consts = getConst(inst_addr, offset)
+				if strings and not consts:
+					res += '<STR>,'
+				elif consts and not strings:
+					res += '0,'
 				else:
-					strings, consts = getConst(inst_addr, offset)
-					if strings and not consts:
-						res += '<STR>,'
-					elif consts and not strings:
-						res += '0,'
-					else:
-						res += '<TAG>,'
-			except:
-				pass
+					res += '<TAG>,'
+		except:
+			pass
 	res = res[:-1]  # remove the last comma
 	return res
 		
