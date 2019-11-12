@@ -1,0 +1,187 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+2json.py	../2json.py	1;"	kind:file	line:1
+PIPE	../raw_graphs.py	/^from subprocess import Popen, PIPE$/;"	kind:namespace	line:6
+Popen	../raw_graphs.py	/^from subprocess import Popen, PIPE$/;"	kind:namespace	line:6
+__init__	../raw_graphs.py	/^	def __init__(self, binary_name):$/;"	kind:member	line:207
+__init__	../raw_graphs.py	/^	def __init__(self, funcname):$/;"	kind:member	line:219
+__init__	../raw_graphs.py	/^	def __init__(self, funcname, g, func_f):$/;"	kind:member	line:13
+__init__	../raw_graphs.py	/^	def __init__(self, size):$/;"	kind:member	line:254
+__init__	../raw_graphs.py	/^	def __init__(self, value=None):$/;"	kind:member	line:237
+__len__	../raw_graphs.py	/^	def __len__(self):$/;"	kind:member	line:21
+__len__	../raw_graphs.py	/^	def __len__(self):$/;"	kind:member	line:214
+__len__	../raw_graphs.py	/^	def __len__(self):$/;"	kind:member	line:233
+analysis	../my_preprocess.py	/^def analysis(path):$/;"	kind:function	line:9
+append	../raw_graphs.py	/^	def append(self, raw_g):$/;"	kind:member	line:211
+append	../raw_graphs.py	/^	def append(self, subg):$/;"	kind:member	line:227
+appendSet	../raw_graphs.py	/^	def appendSet(self, subgs):$/;"	kind:member	line:230
+argparse	../preprocessing_ida.py	/^import argparse$/;"	kind:namespace	line:5
+args	../preprocessing_ida.py	/^	args = parse_command()$/;"	kind:variable	line:15
+attributing	../cfg_constructor.py	/^def attributing(cfg):$/;"	kind:function	line:178
+attributing	../raw_graphs.py	/^	def attributing(self):$/;"	kind:member	line:24
+attributingRe	../cfg_constructor.py	/^def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1$/;"	kind:function	line:148
+betweeness	../graph_property.py	/^def betweeness(g):$/;"	kind:function	line:3
+binary_dir	../run_ida_preprocess.py	/^binary_dir = '\/Users\/eacials\/Downloads\/openssl'$/;"	kind:variable	line:6
+binary_name	../preprocessing_ida.py	/^	binary_name = idc.GetInputFile() + '.ida'$/;"	kind:variable	line:23
+calArithmeticIns	../graph_analysis_ida.py	/^def calArithmeticIns(bl):$/;"	kind:function	line:176
+calCalls	../graph_analysis_ida.py	/^def calCalls(bl):$/;"	kind:function	line:195
+calInsts	../graph_analysis_ida.py	/^def calInsts(bl):$/;"	kind:function	line:208
+calLogicInstructions	../graph_analysis_ida.py	/^def calLogicInstructions(bl):$/;"	kind:function	line:218
+calNconstants	../graph_analysis_ida.py	/^def calNconstants(bl):$/;"	kind:function	line:250
+calSconstants	../graph_analysis_ida.py	/^def calSconstants(bl):$/;"	kind:function	line:237
+calTransferIns	../graph_analysis_ida.py	/^def calTransferIns(bl):$/;"	kind:function	line:278
+cfg	../func.py	/^import cfg_constructor as cfg$/;"	kind:namespace	line:12
+cfg_construct	../cfg_constructor.py	/^def cfg_construct(func):$/;"	kind:function	line:233
+cfg_constructor.py	../cfg_constructor.py	1;"	kind:file	line:1
+cfgs	../2json.py	/^            cfgs = pickle.load(f)$/;"	kind:variable	line:16
+cfgs	../eacials_load.py	/^    cfgs = pickle.load(f)$/;"	kind:variable	line:5
+cfgs	../preprocessing_ida.py	/^	cfgs = get_func_cfgs_c(FirstSeg())$/;"	kind:variable	line:22
+checkCB	../cfg_constructor.py	/^def checkCB(bl):$/;"	kind:function	line:291
+checkCondition	../cfg_constructor.py	/^def checkCondition(ea):$/;"	kind:function	line:302
+closeness_centrality	../graph_property.py	/^def closeness_centrality(g):$/;"	kind:function	line:12
+cmd_str	../run_ida_preprocess.py	/^    cmd_str = '{} -Lida.log -c -A -S{} {}'.format(ida_path, script_path, os.path.join(binary_dir, file))$/;"	kind:variable	line:10
+copy	../cfg_constructor.py	/^import copy$/;"	kind:namespace	line:1
+copy	../cfg_constructor.py	/^import copy$/;"	kind:namespace	line:7
+createG	../raw_graphs.py	/^	def createG(self, binary_str, n):$/;"	kind:member	line:191
+createG	../raw_graphs.py	/^	def createG(self, i):$/;"	kind:member	line:276
+createGraph	../raw_graphs.py	/^	def createGraph(self, results, n):$/;"	kind:member	line:180
+createGraphDirectly	../raw_graphs.py	/^	def createGraphDirectly(self, results):$/;"	kind:member	line:168
+create_Graphbycondition_Directly	../raw_graphs.py	/^	def create_Graphbycondition_Directly(self, results):$/;"	kind:member	line:158
+data	../2json.py	/^                data = json.dumps(dic)$/;"	kind:variable	line:45
+dic	../2json.py	/^                dic = {}$/;"	kind:variable	line:20
+dirpath	../2json.py	/^dirpath = '.\/output\/'  # input path$/;"	kind:variable	line:7
+discovRe.py	../discovRe.py	1;"	kind:file	line:1
+domerge	../cfg_constructor.py	/^def domerge(cfg, bb_id, suc_node):$/;"	kind:function	line:96
+dosi	../cfg_constructor.py	/^from graph_property import *  # dosi @11.4$/;"	kind:namespace	line:13
+dosi	../func.py	/^def dosi():$/;"	kind:function	line:111
+eacials_load.py	../eacials_load.py	1;"	kind:file	line:1
+eigenvector	../graph_property.py	/^def eigenvector(g):$/;"	kind:function	line:8
+enumerating	../raw_graphs.py	/^	def enumerating(self, n):$/;"	kind:member	line:90
+enumeratingAll	../raw_graphs.py	/^	def enumeratingAll(self):$/;"	kind:member	line:259
+enumerating_efficient	../raw_graphs.py	/^	def enumerating_efficient(self, n):$/;"	kind:member	line:117
+filepath	../2json.py	/^        filepath = os.path.join(dirpath, fl)$/;"	kind:variable	line:13
+files	../2json.py	/^files = os.listdir(dirpath)$/;"	kind:variable	line:8
+filtering	../cfg_constructor.py	/^def filtering(cfg):$/;"	kind:function	line:103
+fullpath	../preprocessing_ida.py	/^	fullpath = os.path.join(path, binary_name)$/;"	kind:variable	line:24
+func.py	../func.py	1;"	kind:file	line:1
+fvec	../2json.py	/^                    fvec = []$/;"	kind:variable	line:30
+genArray	../raw_graphs.py	/^	def genArray(self, i):$/;"	kind:member	line:292
+genBinValue	../raw_graphs.py	/^	def genBinValue(self):$/;"	kind:member	line:271
+genMotifs	../raw_graphs.py	/^	def genMotifs(self, n):$/;"	kind:member	line:101
+getArithmeticInsts	../graph_analysis_ida.py	/^def getArithmeticInsts(func):  # dosi @11.4$/;"	kind:function	line:98
+getBBconsts	../graph_analysis_ida.py	/^def getBBconsts(bl):$/;"	kind:function	line:46
+getBasicBlocks	../graph_analysis_ida.py	/^def getBasicBlocks(func):$/;"	kind:function	line:122
+getBinaryValue	../cfg_constructor.py	/^def getBinaryValue(node):$/;"	kind:function	line:211
+getCfg	../cfg_constructor.py	/^def getCfg(func, externs_eas, ea_externs):$/;"	kind:function	line:16
+getConst	../graph_analysis_ida.py	/^def getConst(ea, offset):$/;"	kind:function	line:15
+getDistance	../cfg_constructor.py	/^def getDistance(cfg, id1, id2):$/;"	kind:function	line:194
+getFuncCalls	../graph_analysis_ida.py	/^def getFuncCalls(func):$/;"	kind:function	line:74
+getGlobalVariables	../graph_analysis_ida.py	/^def getGlobalVariables(func):  # dosi @ 11.1$/;"	kind:function	line:118
+getIncommingCalls	../graph_analysis_ida.py	/^def getIncommingCalls(func):$/;"	kind:function	line:126
+getIntrs	../graph_analysis_ida.py	/^def getIntrs(func):$/;"	kind:function	line:106
+getLocalVariables	../graph_analysis_ida.py	/^def getLocalVariables(func):$/;"	kind:function	line:114
+getLogicInsts	../graph_analysis_ida.py	/^def getLogicInsts(func):$/;"	kind:function	line:82
+getOffsprings	../raw_graphs.py	/^	def getOffsprings(self, g, node, offsprings):$/;"	kind:member	line:44
+getStmtNum	../cfg_constructor.py	/^def getStmtNum(node):$/;"	kind:function	line:201
+getTransferInsts	../graph_analysis_ida.py	/^def getTransferInsts(func):$/;"	kind:function	line:90
+get_DMRVariables	../graph_analysis_ida.py	/^def get_DMRVariables(func):  # dosi @ 11.1$/;"	kind:function	line:152
+get_discoverRe_feature	../discovRe.py	/^def get_discoverRe_feature(func, icfg):$/;"	kind:function	line:41
+get_func_bases	../discovRe.py	/^def get_func_bases(ea):$/;"	kind:function	line:93
+get_func_bases	../func.py	/^def get_func_bases(ea):$/;"	kind:function	line:72
+get_func_cfg_sequences	../discovRe.py	/^def get_func_cfg_sequences(func_cfglist):$/;"	kind:function	line:148
+get_func_cfg_sequences	../func.py	/^def get_func_cfg_sequences(func_cfglist):$/;"	kind:function	line:167
+get_func_cfgs	../discovRe.py	/^def get_func_cfgs(ea):$/;"	kind:function	line:122
+get_func_cfgs	../func.py	/^def get_func_cfgs(ea):$/;"	kind:function	line:151
+get_func_cfgs_c	../func.py	/^def get_func_cfgs_c(ea):$/;"	kind:function	line:114
+get_func_cfgs_ctest	../func.py	/^def get_func_cfgs_ctest(ea):$/;"	kind:function	line:133
+get_func_names	../discovRe.py	/^def get_func_names(ea):$/;"	kind:function	line:86
+get_func_names	../func.py	/^def get_func_names(ea):$/;"	kind:function	line:65
+get_func_namesWithoutE	../func.py	/^def get_func_namesWithoutE(ea):$/;"	kind:function	line:51
+get_func_range	../discovRe.py	/^def get_func_range(ea):$/;"	kind:function	line:100
+get_func_range	../func.py	/^def get_func_range(ea):$/;"	kind:function	line:82
+get_func_sequences	../discovRe.py	/^def get_func_sequences(ea):$/;"	kind:function	line:108
+get_func_sequences	../func.py	/^def get_func_sequences(ea):$/;"	kind:function	line:97
+get_funcs	../discovRe.py	/^def get_funcs(ea):$/;"	kind:function	line:16
+get_funcs	../func.py	/^def get_funcs(ea):$/;"	kind:function	line:32
+get_funcs_for_discoverRe	../discovRe.py	/^def get_funcs_for_discoverRe(ea):$/;"	kind:function	line:31
+get_section	../discovRe.py	/^def get_section(t):$/;"	kind:function	line:141
+get_sequences	../discovRe.py	/^def get_sequences(start, end):$/;"	kind:function	line:160
+get_sequences	../func.py	/^def get_sequences(start, end):$/;"	kind:function	line:179
+get_stackVariables	../graph_analysis_ida.py	/^def get_stackVariables(func_addr):$/;"	kind:function	line:132
+get_stack_arg	../discovRe.py	/^def get_stack_arg(func_addr):$/;"	kind:function	line:169
+get_stack_arg	../func.py	/^def get_stack_arg(func_addr):$/;"	kind:function	line:188
+get_unified_funcname	../func.py	/^def get_unified_funcname(ea):$/;"	kind:function	line:90
+getfunc_consts	../graph_analysis_ida.py	/^def getfunc_consts(func):$/;"	kind:function	line:5
+graph_analysis_ida.py	../graph_analysis_ida.py	1;"	kind:file	line:1
+graph_property.py	../graph_property.py	1;"	kind:file	line:1
+graphlets	../raw_graphs.py	/^class graphlets:$/;"	kind:class	line:218
+gt_funcNames	../func.py	/^def gt_funcNames(ea):$/;"	kind:function	line:21
+ida_path	../run_ida_preprocess.py	/^ida_path = '\/Applications\/IDA\\ Pro\\ 7.0\/ida.app\/Contents\/MacOS\/ida64'$/;"	kind:variable	line:4
+idaapi	../my_preprocess.py	/^import idaapi$/;"	kind:namespace	line:1
+idautils	../my_preprocess.py	/^import idautils$/;"	kind:namespace	line:2
+idc	../my_preprocess.py	/^import idc$/;"	kind:namespace	line:3
+itertools	../raw_graphs.py	/^import itertools$/;"	kind:namespace	line:1
+json	../2json.py	/^import json$/;"	kind:namespace	line:2
+jsonpath	../2json.py	/^        jsonpath = '.\/json\/' + fl.split('.ida')[0] + '_features.json'  # output path$/;"	kind:variable	line:12
+main	../my_preprocess.py	/^def main():$/;"	kind:function	line:16
+matchseq	../cfg_constructor.py	/^def matchseq(seqs):$/;"	kind:function	line:124
+merging	../cfg_constructor.py	/^def merging(cfg):$/;"	kind:function	line:80
+mmap	../raw_graphs.py	/^import re,mmap$/;"	kind:namespace	line:9
+my_preprocess.py	../my_preprocess.py	1;"	kind:file	line:1
+nx	../cfg_constructor.py	/^import networkx as nx$/;"	kind:namespace	line:2
+nx	../cfg_constructor.py	/^import networkx as nx$/;"	kind:namespace	line:8
+nx	../discovRe.py	/^import networkx as nx$/;"	kind:namespace	line:8
+nx	../func.py	/^import networkx as nx$/;"	kind:namespace	line:11
+nx	../graph_property.py	/^import networkx as nx$/;"	kind:namespace	line:1
+nx	../raw_graphs.py	/^import networkx as nx$/;"	kind:namespace	line:4
+obtainDataRefs	../discovRe.py	/^def obtainDataRefs(callgraph):$/;"	kind:function	line:219
+obtainDataRefs	../func.py	/^def obtainDataRefs(callgraph):$/;"	kind:function	line:274
+obtainOffsprings	../raw_graphs.py	/^	def obtainOffsprings(self,g):$/;"	kind:member	line:36
+obtain_allpaths	../cfg_constructor.py	/^def obtain_allpaths( cfg, node, path, allpaths):$/;"	kind:function	line:264
+obtain_block_sequence	../cfg_constructor.py	/^def obtain_block_sequence(func):$/;"	kind:function	line:276
+os	../2json.py	/^import os$/;"	kind:namespace	line:3
+os	../my_preprocess.py	/^import os$/;"	kind:namespace	line:4
+os	../preprocessing_ida.py	/^import os$/;"	kind:namespace	line:4
+os	../raw_graphs.py	/^import os$/;"	kind:namespace	line:8
+os	../run_ida_preprocess.py	/^import os$/;"	kind:namespace	line:1
+p	../run_ida_preprocess.py	/^        p = subprocess.Popen(cmd_str, shell=True)$/;"	kind:variable	line:13
+parseOutput	../raw_graphs.py	/^	def parseOutput(self, path, n):$/;"	kind:member	line:136
+parseOutputByconditions	../raw_graphs.py	/^	def parseOutputByconditions(self, path, n):$/;"	kind:member	line:147
+parse_command	../preprocessing_ida.py	/^def parse_command():$/;"	kind:function	line:7
+path	../preprocessing_ida.py	/^	path = args.path$/;"	kind:variable	line:16
+pdb	../discovRe.py	/^import pdb$/;"	kind:namespace	line:10
+pdb	../func.py	/^import pdb$/;"	kind:namespace	line:14
+pdb	../graph_property.py	/^import pdb$/;"	kind:namespace	line:2
+pdb	../raw_graphs.py	/^import pdb$/;"	kind:namespace	line:7
+pickle	../2json.py	/^import pickle$/;"	kind:namespace	line:1
+pickle	../discovRe.py	/^import cPickle as pickle$/;"	kind:namespace	line:9
+pickle	../eacials_load.py	/^import pickle$/;"	kind:namespace	line:1
+pickle	../func.py	/^import cPickle as pickle$/;"	kind:namespace	line:13
+preprocessing_ida.py	../preprocessing_ida.py	1;"	kind:file	line:1
+processDataSegs	../discovRe.py	/^def processDataSegs():$/;"	kind:function	line:191
+processDataSegs	../func.py	/^def processDataSegs():$/;"	kind:function	line:246
+processExternalSegs	../func.py	/^def processExternalSegs():$/;"	kind:function	line:210
+processpltSegs	../func.py	/^def processpltSegs():$/;"	kind:function	line:227
+raw_graph	../raw_graphs.py	/^class raw_graph:$/;"	kind:class	line:12
+raw_graphs	../raw_graphs.py	/^class raw_graphs:$/;"	kind:class	line:206
+raw_graphs.py	../raw_graphs.py	1;"	kind:file	line:1
+re	../raw_graphs.py	/^import re,mmap$/;"	kind:namespace	line:9
+remove	../cfg_constructor.py	/^def remove(bb_start, bb_end):$/;"	kind:function	line:118
+retrieveExterns	../graph_analysis_ida.py	/^def retrieveExterns(bl, ea_externs):$/;"	kind:function	line:263
+retrieveGP	../graph_property.py	/^def retrieveGP(g):$/;"	kind:function	line:16
+retrieveVec	../raw_graphs.py	/^	def retrieveVec(self, id_, g):$/;"	kind:member	line:52
+run_ida_preprocess.py	../run_ida_preprocess.py	1;"	kind:file	line:1
+script_path	../run_ida_preprocess.py	/^script_path = '\/Users\/eacials\/Downloads\/Gencoding-master\/FIT\/3LACFG_Generator\/my_preprocess.py'$/;"	kind:variable	line:7
+subprocess	../run_ida_preprocess.py	/^import subprocess$/;"	kind:namespace	line:2
+suc	../2json.py	/^                suc = []$/;"	kind:variable	line:24
+sys	../raw_graphs.py	/^import sys$/;"	kind:namespace	line:2
+template_graph	../raw_graphs.py	/^class template_graph:$/;"	kind:class	line:236
+template_graphs	../raw_graphs.py	/^class template_graphs:$/;"	kind:class	line:253
+transform	../cfg_constructor.py	/^def transform(cfg):$/;"	kind:function	line:76
+updateBN	../raw_graphs.py	/^	def updateBN(self, binary_name):$/;"	kind:member	line:224
+updateG	../raw_graphs.py	/^	def updateG(self,g):$/;"	kind:member	line:241
+work_dir	../run_ida_preprocess.py	/^work_dir = os.path.abspath('.')$/;"	kind:variable	line:5

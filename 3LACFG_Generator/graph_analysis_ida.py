@@ -215,6 +215,18 @@ def calInsts(bl):
 		ea = NextHead(ea)
 	return num
 
+# dosi @11.11 
+# return list of insts of a bb
+def collectInsts(bl):
+	insts_list = []
+	start = bl[0]
+	end = bl[1]
+	inst_addr = start
+	while inst_addr < end:
+		insts_list.append(idc.GetDisasm(inst_addr))
+		inst_addr = NextHead(inst_addr)
+	return insts_list
+
 def calLogicInstructions(bl):
 	x86_LI = {'and':1, 'andn':1, 'andnpd':1, 'andpd':1, 'andps':1, 'andnps':1, 'test':1, 'xor':1, 'xorpd':1, 'pslld':1}
 	mips_LI = {'and':1, 'andi':1, 'or':1, 'ori':1, 'xor':1, 'nor':1, 'slt':1, 'slti':1, 'sltu':1, 'xori':1}  #dosi @11.4

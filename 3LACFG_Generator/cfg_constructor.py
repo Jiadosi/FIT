@@ -174,6 +174,8 @@ def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 
 		cfg.node[node_id]['between'] = betweenness_dict[node_id]  # dosi @11.4
 
+		cfg.node[node_id]['inst'] = collectInsts(bl)  # dosi @11.11
+
 def attributing(cfg):
 	ga = graph_analysis()
 	ga.gwithoffspring(cfg)
