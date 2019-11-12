@@ -247,8 +247,7 @@ def preprocessing_rules(inst_addr):
 			else:
 				res += '<TAG>'
 		try:
-			strings consts = getConst(inst_addr, 2)
-			strings, consts = getConst(inst_addr, offset)
+			strings, consts = getConst(inst_addr, 2)
 			if strings and not consts:
 				res += '<STR>,'
 			elif consts and not strings:
