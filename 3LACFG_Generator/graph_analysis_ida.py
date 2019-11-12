@@ -224,6 +224,9 @@ def collectInsts(bl):
 	inst_addr = start
 	while inst_addr < end:
 		insts_list.append(idc.GetDisasm(inst_addr))
+		print 'Disasm:', idc.GetDisasm(inst_addr)
+		print 'optype0', GetOpType(inst_addr, 0)
+		print 'optype1', GetOpType(inst_addr, 1)
 		preprocess_insts_list.append(preprocessing_rules(inst_addr))  # dosi @11.12
 		inst_addr = NextHead(inst_addr)
 	return insts_list, preprocess_insts_list  # dosi @11.12
@@ -236,7 +239,7 @@ def preprocessing_rules(inst_addr):
 	res += GetMnem(inst_addr)  # keep opcode unchange
 	res += '~'
 	if GetMnem(inst_addr) in calls:  # if is function names
-		res += 'FOO'
+		res += 'FOO,'
 	else:
 		for offset in [0, 1]:
 			strings, consts = getConst(inst_addr, offset)
@@ -245,7 +248,7 @@ def preprocessing_rules(inst_addr):
 			elif consts and not strings:
 				res += '0,'
 			else:
-				res += '<TAG>'
+				res += '<TAG>,'
 		try:
 			strings, consts = getConst(inst_addr, 2)
 			if strings and not consts:
@@ -253,7 +256,7 @@ def preprocessing_rules(inst_addr):
 			elif consts and not strings:
 				res += '0,'
 			else:
-				res += '<TAG>'
+				res += '<TAG>,'
 		except:
 			pass
 	res = res[:-1]  # move the last comma
