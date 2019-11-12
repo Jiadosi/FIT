@@ -218,14 +218,48 @@ def calInsts(bl):
 # dosi @11.11 
 # return list of insts of a bb
 def collectInsts(bl):
-	insts_list = []
+	insts_list, preprocess_insts_list = [], []  # dosi @11.12 add preprocessing rules
 	start = bl[0]
 	end = bl[1]
 	inst_addr = start
 	while inst_addr < end:
 		insts_list.append(idc.GetDisasm(inst_addr))
+		preprocess_insts_list.append(preprocessing_rules(inst_addr))  # dosi @11.12
 		inst_addr = NextHead(inst_addr)
-	return insts_list
+	return insts_list, preprocess_insts_list  # dosi @11.12
+
+# dosi @11.12
+# preprocessing inst
+def preprocessing_rules(inst_addr):
+	calls = {'call':1, 'jal':1, 'jalr':1}
+	res = ''
+	res += GetMnem(inst_addr)  # keep opcode unchange
+	res += '~'
+	if GetMnem(inst_addr) in calls:  # if is function names
+		res += 'FOO'
+	else:
+		for offset in [0, 1]:
+			strings, consts = getConst(inst_addr, offset)
+			if strings and not consts:
+				res += '<STR>,'
+			elif consts and not strings:
+				res += '0,'
+			else:
+				res += '<TAG>'
+		try:
+			strings consts = getConst(inst_addr, 2)
+			strings, consts = getConst(inst_addr, offset)
+			if strings and not consts:
+				res += '<STR>,'
+			elif consts and not strings:
+				res += '0,'
+			else:
+				res += '<TAG>'
+		except:
+			pass
+	res = res[:-1]  # move the last comma
+	return res
+		
 
 def calLogicInstructions(bl):
 	x86_LI = {'and':1, 'andn':1, 'andnpd':1, 'andpd':1, 'andps':1, 'andnps':1, 'test':1, 'xor':1, 'xorpd':1, 'pslld':1}

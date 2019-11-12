@@ -84,9 +84,12 @@ class raw_graph:
 		# betweenness10
 		betweenness = g.node[id_]['between']
 		feature_vec.append(betweenness)
-		# inst_list11
-		instList = g.node[id_]['inst']
+		# origInst_list11
+		instList = g.node[id_]['origInst']
 		feature_vec.append(instList)
+		# proInst_list12
+		proInst = g.node[id_]['proInst']
+		feature_vec.append(proInst)
 		return feature_vec
 
 
