@@ -147,6 +147,12 @@ def matchseq(seqs):
 # def attributingRe(cfg, externs_eas, ea_externs):
 def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 	betweenness_dict = betweeness(cfg)  # dosi @11.4 for betweenness of each node
+	# dosi @11.13 get processor arch
+	try:
+		info = get_inf_structure()
+		arch = info.procName()
+	except:
+		pass
 
 	for node_id in cfg:
 		bl = cfg.node[node_id]['label']
@@ -175,7 +181,7 @@ def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 		cfg.node[node_id]['between'] = betweenness_dict[node_id]  # dosi @11.4
 
 		# cfg.node[node_id]['inst'] = collectInsts(bl)  # dosi @11.11
-		orig_insts, preprocess_insts = collectInsts(bl)  # dosi @11.12
+		orig_insts, preprocess_insts = collectInsts(bl, arch)  # dosi @11.12
 		cfg.node[node_id]['origInst'] = orig_insts
 		cfg.node[node_id]['proInst'] = preprocess_insts
 

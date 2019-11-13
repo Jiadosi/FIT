@@ -217,7 +217,7 @@ def calInsts(bl):
 
 # dosi @11.11 
 # return list of insts of a bb
-def collectInsts(bl):
+def collectInsts(bl, arch):
 	insts_list, preprocess_insts_list = [], []  # dosi @11.12 add preprocessing rules
 	start = bl[0]
 	end = bl[1]
@@ -227,20 +227,17 @@ def collectInsts(bl):
 		print 'Disasm:', idc.GetDisasm(inst_addr)
 		print 'optype0', GetOpType(inst_addr, 0)
 		print 'optype1', GetOpType(inst_addr, 1)
-		preprocess_insts_list.append(preprocessing_rules(inst_addr))  # dosi @11.12
+		preprocess_insts_list.append(preprocessing_rules(inst_addr, arch))  # dosi @11.12
 		inst_addr = NextHead(inst_addr)
 	return insts_list, preprocess_insts_list  # dosi @11.12
 
 # dosi @11.12
 # preprocessing inst
-def preprocessing_rules(inst_addr):
-	calls = {'call':1, 'jal':1, 'jalr':1}
+def preprocessing_rules(inst_addr, arch):
 	res = ''
 	res += GetMnem(inst_addr)  # keep opcode unchange
 	res += '~'
-	# if GetMnem(inst_addr) in calls:  # if is function names
-	# 	res += 'FOO,'
-	# else:
+
 	for offset in [0, 1, 2]:
 		try:
 			opType = GetOpType(inst_addr, offset)
@@ -249,9 +246,19 @@ def preprocessing_rules(inst_addr):
 			if opType == o_far or opType == o_near:  # 6 7
 				res += 'FOO,'
 			elif opType == o_reg:  # 1
-				res += GetOpnd(inst_addr, offset)[1:] + ','  # remove $
+				res += GetOpnd(inst_addr, offset) + ','  # x86, arm
 			elif opType == o_displ:  # 4
-				res += '[{}+0]'.format(GetOpnd((inst_addr, offset).split('$')[-1][:-1])) + ','
+				if arch == 'ARM':
+					pass
+				elif arch == 'metapc':
+					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('+')[0][1:]) + ','  # x86
+				elif arch == 'mipsb':
+					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('$')[-1][:-1]) + ','  # mips
+			elif opType == o_idpspec1:
+				if arch == 'ARM':
+					res += GetOpnd(inst_addr, offset) + ','
+				else:
+					pass
 			else:
 				strings, consts = getConst(inst_addr, offset)  # 5
 				if strings and not consts:
