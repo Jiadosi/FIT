@@ -225,8 +225,6 @@ def collectInsts(bl, arch):
 	while inst_addr < end:
 		insts_list.append(idc.GetDisasm(inst_addr))
 		print 'Disasm:', idc.GetDisasm(inst_addr)
-		print 'optype0', GetOpType(inst_addr, 0)
-		print 'optype1', GetOpType(inst_addr, 1)
 		preprocess_insts_list.append(preprocessing_rules(inst_addr, arch))  # dosi @11.12
 		inst_addr = NextHead(inst_addr)
 	return insts_list, preprocess_insts_list  # dosi @11.12
@@ -249,7 +247,7 @@ def preprocessing_rules(inst_addr, arch):
 				res += GetOpnd(inst_addr, offset) + ','  # x86, arm
 			elif opType == o_displ:  # 4
 				if arch == 'ARM':
-					pass
+					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split(',')[0][1:]) + ','
 				elif arch == 'metapc':
 					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('+')[0][1:]) + ','  # x86
 				elif arch == 'mipsb':
@@ -270,6 +268,7 @@ def preprocessing_rules(inst_addr, arch):
 		except:
 			pass
 	res = res[:-1]  # remove the last comma
+	print res
 	return res
 		
 
