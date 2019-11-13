@@ -235,10 +235,11 @@ def preprocessing_rules(inst_addr, arch):
 	res = ''
 	res += GetMnem(inst_addr)  # keep opcode unchange
 	res += '~'
-
+	print 'arch', arch
 	for offset in [0, 1, 2]:
 		try:
 			opType = GetOpType(inst_addr, offset)
+			print opType
 			if opType == o_void:  # 0
 				break
 			if opType == o_far or opType == o_near:  # 6 7
@@ -247,13 +248,23 @@ def preprocessing_rules(inst_addr, arch):
 				res += GetOpnd(inst_addr, offset) + ','  # x86, arm
 			elif opType == o_displ:  # 4
 				if arch == 'ARM':
-					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split(',')[0][1:]) + ','
+					tmp = GetOpnd(inst_addr, offset).split(',')
+					print 'tmp: ', tmp
+					if len(tmp) == 1:
+						tmp = tmp[0][1:-1]
+					else:
+						if tmp[0][-1] == ']':
+							tmp = tmp[0][1:-1]
+						else:
+							tmp = tmp[0][1:]
+					res += '[{}+0]'.format(tmp) + ','
 				elif arch == 'metapc':
 					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('+')[0][1:]) + ','  # x86
 				elif arch == 'mipsb':
 					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('$')[-1][:-1]) + ','  # mips
 			elif opType == o_idpspec1:
 				if arch == 'ARM':
+					print '9', GetOpnd(inst_addr, offset)
 					res += GetOpnd(inst_addr, offset) + ','
 				else:
 					pass

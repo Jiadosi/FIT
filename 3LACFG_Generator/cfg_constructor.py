@@ -148,11 +148,12 @@ def matchseq(seqs):
 def attributingRe(cfg, externs_eas, ea_externs, start, end):   # eacials 11.1
 	betweenness_dict = betweeness(cfg)  # dosi @11.4 for betweenness of each node
 	# dosi @11.13 get processor arch
+	arch = None
 	try:
 		info = get_inf_structure()
-		arch = info.procName()
-	except:
-		pass
+		arch = info.procName
+	except Exception as e:
+		print e
 
 	for node_id in cfg:
 		bl = cfg.node[node_id]['label']
