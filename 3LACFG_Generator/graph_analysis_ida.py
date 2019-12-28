@@ -224,7 +224,7 @@ def collectInsts(bl, arch):
 	inst_addr = start
 	while inst_addr < end:
 		insts_list.append(idc.GetDisasm(inst_addr))
-		print 'Disasm:', idc.GetDisasm(inst_addr)
+		# print 'Disasm:', idc.GetDisasm(inst_addr)
 		preprocess_insts_list.append(preprocessing_rules(inst_addr, arch))  # dosi @11.12
 		inst_addr = NextHead(inst_addr)
 	return insts_list, preprocess_insts_list  # dosi @11.12
@@ -235,11 +235,9 @@ def preprocessing_rules(inst_addr, arch):
 	res = ''
 	res += GetMnem(inst_addr)  # keep opcode unchange
 	res += '~'
-	print 'arch', arch
 	for offset in [0, 1, 2]:
 		try:
 			opType = GetOpType(inst_addr, offset)
-			print opType
 			if opType == o_void:  # 0
 				break
 			if opType == o_far or opType == o_near:  # 6 7
@@ -249,7 +247,6 @@ def preprocessing_rules(inst_addr, arch):
 			elif opType == o_displ:  # 4
 				if arch == 'ARM':
 					tmp = GetOpnd(inst_addr, offset).split(',')
-					print 'tmp: ', tmp
 					if len(tmp) == 1:
 						tmp = tmp[0][1:-1]
 					else:
@@ -264,7 +261,6 @@ def preprocessing_rules(inst_addr, arch):
 					res += '[{}+0]'.format(GetOpnd(inst_addr, offset).split('$')[-1][:-1]) + ','  # mips
 			elif opType == o_idpspec1:
 				if arch == 'ARM':
-					print '9', GetOpnd(inst_addr, offset)
 					res += GetOpnd(inst_addr, offset) + ','
 				else:
 					pass
@@ -279,7 +275,6 @@ def preprocessing_rules(inst_addr, arch):
 		except:
 			pass
 	res = res[:-1]  # remove the last comma
-	print res
 	return res
 		
 
