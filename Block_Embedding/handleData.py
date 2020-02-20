@@ -4,6 +4,12 @@ import numpy as np
 from tensorflow.python import keras
 from tensorflow.python.keras import layers
 
+import sys
+sys.path.append('..')
+import os
+import json
+from Instruction_Embedding.instEmbedding import loading
+
 first_letter = ord(string.ascii_lowercase[0])
 
 class LoadData(object):
@@ -17,12 +23,12 @@ class LoadData(object):
             data = f.readlines()
 
         # pruning, keep bb smaller than 35 insts
-        npData = np.array()
+        npData = []
         for line in data:
             line = line.split()
             if len(line) <= 35:
                 npData.append(np.array(line))
-        return npData
+        return np.array(npData)
 
     def _prepro_data(data):
         # padding
@@ -58,6 +64,43 @@ def batches2string(batches):
         s = [''.join(x) for x in zip(s, characters(b))]
     return s
 
+def inst2embedding(filePath):
+    with open(os.path.join('../Instruction_Embedding/dataset/filtered_json_inst', filePath)) as f:
+        data = f.readlines()
+
+    with open(os.path.join('../Instruction_Embedding/dataset/filtered_json_inst/instEmbed/', filePath), 'w') as f:
+        # load w2v
+        if 'arm' in filePath:
+            print('loading arm model')
+            model = loading('../Instruction_Embedding/myModel/arm')
+        elif 'x86' in filePath:
+            print('loading x86 model')
+            model = loading('../Instruction_Embedding/myModel/x86')
+        elif 'mips' in filePath:
+            print('loading mips model')
+            model = loading('../Instruction_Embedding/myModel/mips')
+
+        for line in data:
+            line = json.loads(line)
+            instsEmbed = []
+            for bb in line['features']:
+                for inst in bb[-1]:
+                    try:
+                        embed = model[inst].tolist()
+                        instsEmbed.append(embed)
+                    except Exception as e:
+                        print(e)
+                bb.remove(bb[-2])
+                bb[-1] = instsEmbed
+            f.write(json.dumps(line))
+            f.write('\n')
+
+
 if __name__ == "__main__":
-    loadData = LoadData()
-    print(loadData.text.shape)
+    # loadData = LoadData()
+    # print(loadData.text.shape)
+    for f in os.listdir('../Instruction_Embedding/dataset/filtered_json_inst'):
+        if 'openssl' not in f:
+            continue
+        print(f)
+        inst2embedding(f)

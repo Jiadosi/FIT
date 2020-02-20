@@ -9,11 +9,11 @@ from handleData import LoadData
 # dataset
 mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
 x, y = mnist.train.next_batch(5)
-print(type(x), x)
-print(type(y), y)
-loadData = LoadData()
-train_text = loadData.train_text
-valid_text = loadData.valid_text
+print(type(x), x.shape)
+print(type(y), y.shape)
+# loadData = LoadData()
+# train_text = loadData.train_text
+# valid_text = loadData.valid_text
 
 # tf Graph input
 X = tf.placeholder("float", [None, config.timesteps, config.num_input])
