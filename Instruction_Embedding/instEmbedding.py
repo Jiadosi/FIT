@@ -8,7 +8,7 @@ import pandas as pd
 # from spicy.spatial import distance
 
 # preparing dataset
-def preparing(dirPath):
+def preparing(dirPath, filePath):
     print('---preparing dataset---')
     for f in os.listdir(dirPath):
         filePath = ''
@@ -20,7 +20,7 @@ def preparing(dirPath):
         with open(filePath, 'r') as f:
             data = f.readlines()
         res = []
-        with open('./w2v_mips_dataset.txt', 'a') as f:
+        with open(filePath, 'a') as f:
             for line in data:
                 g = json.loads(line)
                 for bb in g['features']:
@@ -48,7 +48,6 @@ def loading(modelPath):
     return model
 
 # visualizing
-
 def display_allwords(model1, model2):
     # model1
     vocab1 = list(model1.wv.vocab)
@@ -115,7 +114,7 @@ if __name__ == "__main__":
     modelPath2 = './myModel/arm'
     dirPath = './filtered_json_inst'
     filePath = './w2v_arm_dataset.txt'
-    # preparing(dirPath)
+    # preparing(dirPath, filePath)
     # sentences = inputGen(filePath)
     # training(modelPath, sentences)
     model = loading(modelPath)
@@ -123,7 +122,8 @@ if __name__ == "__main__":
     #model = loading(modelPath2)
     #print(model['mov~eax,<TAG>'])
     #print(model['mov~eax,<eax+0>'])
-
+    '''
+    # eval distance
     xtest = model['test~eax,eax']
     xmov = model['mov~eax,0']
     xadd = model['add~eax,0']
@@ -134,6 +134,4 @@ if __name__ == "__main__":
     print(dis1)
     dis1 = np.dot(xmov, aldr)/(np.linalg.norm(xmov)*(np.linalg.norm(aldr)))
     print(dis1)
-    # mov~eax,<TAG>  movsx~ebx,[esp+0]
-    # display_closestwords_tsnescatterplot(model2, 'LDR~R3,[R5+0]', 100)
-    # display_allwords(model1, model2)
+    '''
