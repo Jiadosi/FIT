@@ -14,5 +14,8 @@
 3. FUTUREWORK: ARCHITECTURE FREE
 
 ## Block_Embedding & Graph_Embedding
+1. Run __train.py, this will take a long time Orzzzzz
+2. The trained model will be stored in "./saved_model/".
+2. Run filter.py, get the similar score between function pairs. Note that, the vulnerable binary function should be the last json item in the json file which store all the preprocessed functions from the under-test binary!
 
 ## Graph_Match
