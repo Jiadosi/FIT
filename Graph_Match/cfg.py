@@ -177,7 +177,14 @@ class cfg():
             self.out_degree(v)
             v.set_betweenness()
             #v.entry_bb, v.bb_exit = self.shortest_path(v)
-            
+    
+    def prepare_new(self):
+        self._gen_in_degree_dict()
+        self._gen_out_degree_dict()
+        for v in self.vertices:
+            self.in_degree(v)
+            self.out_degree(v)
+        
 
 if __name__ == '__main__':
     cfgraph = cfg('init')

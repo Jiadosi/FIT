@@ -49,4 +49,11 @@ class basicBlock():
     def set_betweenness(self):
         self.betweenness = len(self.in_degree) + len(self.out_degree)
 
+    def set_betweenness_new(self, no):
+        self.betweenness = no
 
+    def set_entry_bb(self, dis):
+        self.entry_bb = dis
+
+    def set_bb_exit(self, dis):
+        self.bb_exit = dis

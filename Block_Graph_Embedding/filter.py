@@ -36,6 +36,8 @@ parser.add_argument('--lstm_hidden', type=int, default=128,
         help='hidden size in lstm')
 parser.add_argument('--top_similar', type=int, default=50,
         help='filter top n similar func')
+parser.add_argument('--check_dir', type=str, default='./suspicious/',
+        help='path for suspicious func')
 
 
 if __name__ == '__main__':
@@ -59,6 +61,7 @@ if __name__ == '__main__':
     W2VMODEL = args.w2v_path
     LSTM_HIDDEN = args.lstm_hidden
     TOPN = args.top_similar
+    SUSPICIOUS_PATH = args.check_dir
 
     # w2v model dict
     w2v = {}
@@ -79,18 +82,24 @@ if __name__ == '__main__':
         )
     gnn.init(LOAD_PATH, LOG_PATH)
 
-    JSON_DIR = "./data/3lacfgSSL_{}/filtered_json_inst/jsonWithInst/".format(NODE_FEATURE_DIM)
+    JSON_DIR = "./data/3lacfgSSL_{}/filtered_json_inst/testwhole/".format(NODE_FEATURE_DIM)
     F_NAME = list(map(lambda x: JSON_DIR + x, os.listdir(JSON_DIR)))
     FUNC_NAME_DICT = {}
     FUNC_NAME_DICT = get_f_dict(F_NAME)
 
     for f_name in F_NAME:
         Gs = read_graph_in_one_file(f_name, FUNC_NAME_DICT)
+        # print(os.path.join(SUSPICIOUS_PATH, Gs[0].name.split('/')[-1][:-4]))
         embeddings = get_embed_epoch(gnn, Gs, BATCH_SIZE, w2v)
-        infos = get_infos(Gs, embeddings, embeddings[-1])  # last graph as the vul graph
+        infos = get_infos(Gs[:-1], embeddings[:-1], embeddings[-1])  # last graph as the vul graph
         infos = infos[:TOPN]  # take top 50
-        for info in infos:
-            print('\033[1;36m {0} -- {1} score: {2}\033[0m'.format(get_key(FUNC_NAME_DICT, info.graph.label), get_key(FUNC_NAME_DICT, Gs[-1].label), info.score))
+        
+        vul_func_name = get_key(FUNC_NAME_DICT, Gs[-1].label)
+        with open(os.path.join(SUSPICIOUS_PATH, Gs[0].name.split('/')[-1][:-4]), 'w') as f:
+            for info in infos:
+                func_name = get_key(FUNC_NAME_DICT, info.graph.label)
+                print('\033[1;36m {0} -- {1} score: {2}\033[0m'.format(func_name, vul_func_name, info.score))
+                f.write(func_name)
+                f.write('\n')
         print("\033[1;36m=================================\033[0m")
-        break
 

@@ -262,7 +262,7 @@ def init_match(cfg_vul, cfg_kernel):
 
 # if number of instructions in a bb less than 3, then use unigram.
 def fuzzy_match3(cfg_vul, cfg_kernel):
-    print(cfg_vul.vertices[0].instructions)
+    # print(cfg_vul.vertices[0].instructions)
     list_vul = []
     list_ker = []
     mat = []   # the matrix for Hungarian Algorithm
@@ -280,14 +280,14 @@ def fuzzy_match3(cfg_vul, cfg_kernel):
                     list_ker.append(ker_node)
                     insA = [i.op.lower() for i in vul_node.instructions]   # python exercise: two methods to generate a list
                     insB = list(map(lambda x:x.op.lower(), ker_node.instructions))
-                    print(insA, insB)
+                    # print(insA, insB)
                     if len(insA) < 3 or len(insB) < 3:
                         unigram_mat = get_unigram_matrix(insA, insB)
                         point_bb, m = hung(np.array(unigram_mat))
                         if point_bb == 0.0:
                             point_bb = 0.1
-                            print(unigram_mat)
-                            print(point_bb, len(m))
+                            # print(unigram_mat)
+                            # print(point_bb, len(m))
                         if len(m) == 0:
                             return -1, -1  # bad graph
                         tmp.append((point_bb / len(m)) * 3)
@@ -296,9 +296,9 @@ def fuzzy_match3(cfg_vul, cfg_kernel):
                         point_bb, m = hung(np.array(ngram_mat))
                         tmp.append(point_bb / len(m))
             mat.append(tmp)
-    print(mat)
+    # print(mat)
     points, matches = hung(np.array(mat))
-    print(points)
+    # print(points)
     for pair in matches:
         list_vul[pair[0]].set_matched_bb(list_ker[pair[1]])
         list_ker[pair[1]].set_matched_bb(list_vul[pair[0]])
@@ -327,13 +327,13 @@ def fuzzy_match2(cfg_vul, cfg_kernel):
                     if len(ngram_mat) == 0 or len(ngram_mat[0]) == 0:
                         tmp.append(point_bb)
                     else:
-                        print(ngram_mat)
+                        # print(ngram_mat)
                         point_bb, m = hung(np.array(ngram_mat))
                         tmp.append(point_bb/len(m))
             mat.append(tmp)
-    print(mat)
+    # print(mat)
     points, matches = hung(np.array(mat))
-    print(points)
+    # print(points)
     for pair in matches:
         list_vul[pair[0]].set_matched_bb(list_ker[pair[1]])
         list_ker[pair[1]].set_matched_bb(list_vul[pair[0]])
