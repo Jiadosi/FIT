@@ -25,5 +25,5 @@
 
 ## Graph_Match
 1. Run run_graphMatch.py, find the vulnerable functions' name printed in the terminal.
-``python3 run_graphMatch --sus_dir ./suspicious --json_dir ../dataset/ --threashold 1.5``
+``python3 run_graphMatch --sus_dir ../Block_Graph_Embedding/suspicious/ --json_dir ../Instruction_Embedding/dataset/filtered_json_inst/ --threashold 1.5``
 2. FUTURE WORK: BETTER BIPATITIE ALGORITHM OR DYNAMIC ANALYSIS
