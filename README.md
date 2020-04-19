@@ -2,6 +2,10 @@
 
 ## Environment
 
+## Dataset
+* OpenSSL in Instruction_Embedding/dataset/filtered_json_inst/
+* CoreUtils in Dataset/CoreUtils/
+
 ## 3LACFG_Generator
 1. In run_ida_preprocess.py, config *ida_path* and *binary_dir*, which is your ida_bin path and the binaries dir path, respectively.
 2. In my_preprocess.py, config *path*, which is the output dir to store the generated *.ida files.
