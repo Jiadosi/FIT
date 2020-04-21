@@ -14,7 +14,8 @@ def analysis(path):
     idc.Exit(0)
 
 def main():
-    path = '/Users/eacials/Downloads/Gencoding-master/output'
+    # path = '/Users/eacials/Downloads/Gencoding-master/output'
+    path = '../Dataset/CoreUtils/output/'
     idaapi.autoWait()
     analysis(path)
     idc.Exit(0)

@@ -1,0 +1,101 @@
+Possible file format: ELF for ARM (Shared object) (/Applications/ida.app/Contents/MacOS/loaders/elf64.dylib)
+
+  bytes   pages size description
+--------- ----- ---- --------------------------------------------
+   647168    79 8192 allocating memory for b-tree...
+   647168    79 8192 allocating memory for virtual array...
+   262144    32 8192 allocating memory for name pointers...
+-----------------------------------------------------------------
+  1556480            total memory allocated
+
+Loading file '/Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat' into database...
+Detected file format: ELF for ARM (Shared object)
+Loading processor module /Applications/ida.app/Contents/MacOS/procs/arm64.dylib for arm...OK
+Autoanalysis subsystem has been initialized.
+Assuming __cdecl calling convention by default
+  0. Creating a new segment  (000000000000611C-0000000000006124) ... ... OK
+  1. Creating a new segment  (0000000000000034-0000000000000154) ... ... OK
+  2. Creating a new segment  (0000000000000000-0000000000000034) ... ... OK
+  3. Creating a new segment  (0000000000000154-000000000000611C) ... ... OK
+  4. Creating a new segment  (0000000000006124-0000000000006128) ... ... OK
+  5. Creating a new segment  (0000000000016CF4-0000000000017580) ... ... OK
+Assuming __cdecl calling convention by default
+Type library 'gnulnx_arm' loaded. Applying types...
+Types applied to 0 names.
+  6. Creating a new segment  (0000000000000CDC-0000000000000CE8) ... ... OK
+     Additional segment      (0000000000000CE8-000000000000611C) ...
+  7. Creating a new segment  (0000000000000CE8-000000000000611C) ... ... OK
+  8. Creating a new segment  (0000000000000CE8-0000000000000FF4) ... ... OK
+     Additional segment      (0000000000000FF4-000000000000611C) ...
+     Deleting segment        (0000000000000FF4-000000000000611C) ...
+  8. Creating a new segment  (0000000000000FF4-000000000000611C) ... ... OK
+  9. Creating a new segment  (0000000000000FF8-0000000000005770) ... ... OK
+     Additional segment      (0000000000005770-000000000000611C) ...
+ 10. Creating a new segment  (0000000000005770-000000000000611C) ... ... OK
+ 11. Creating a new segment  (0000000000005770-0000000000005778) ... ... OK
+     Additional segment      (0000000000005778-000000000000611C) ...
+     Deleting segment        (0000000000005778-000000000000611C) ...
+ 11. Creating a new segment  (0000000000005778-000000000000611C) ... ... OK
+ 12. Creating a new segment  (0000000000005778-000000000000611B) ... ... OK
+     Additional segment      (000000000000611B-000000000000611C) ...
+     Deleting segment        (000000000000611B-000000000000611C) ...
+ 12. Creating a new segment  (000000000000611B-000000000000611C) ... ... OK
+     Deleting segment        (000000000000611C-0000000000006124) ...
+ 12. Creating a new segment  (000000000000611C-0000000000006124) ... ... OK
+     Deleting segment        (0000000000006124-0000000000006128) ...
+ 12. Creating a new segment  (0000000000006124-0000000000006128) ... ... OK
+ 13. Creating a new segment  (0000000000016CF4-0000000000016CF8) ... ... OK
+     Additional segment      (0000000000016CF8-0000000000017580) ...
+     Deleting segment        (0000000000016CF8-0000000000017580) ...
+ 13. Creating a new segment  (0000000000016CF8-0000000000017580) ... ... OK
+ 14. Creating a new segment  (0000000000016CF8-0000000000016CFC) ... ... OK
+     Additional segment      (0000000000016CFC-0000000000017580) ...
+     Deleting segment        (0000000000016CFC-0000000000017580) ...
+ 14. Creating a new segment  (0000000000016CFC-0000000000017580) ... ... OK
+ 15. Creating a new segment  (0000000000016CFC-0000000000016DC0) ... ... OK
+     Additional segment      (0000000000016DC0-0000000000017580) ...
+     Deleting segment        (0000000000016DC0-0000000000017580) ...
+ 15. Creating a new segment  (0000000000016DC0-0000000000017580) ... ... OK
+ 16. Creating a new segment  (0000000000016EC0-0000000000017000) ... ... OK
+     Additional segment      (0000000000017000-0000000000017580) ...
+ 17. Creating a new segment  (0000000000017000-0000000000017580) ... ... OK
+ 18. Creating a new segment  (0000000000017000-0000000000017038) ... ... OK
+     Additional segment      (0000000000017038-0000000000017580) ...
+     Deleting segment        (0000000000017038-0000000000017580) ...
+ 18. Creating a new segment  (0000000000017038-0000000000017580) ... ... OK
+     Deleting segment        (0000000000017038-0000000000017580) ...
+ 18. Creating a new segment  (0000000000017038-0000000000017580) ... ... OK
+ 19. Creating a new segment  (0000000000017580-0000000000017581) ... ... OK
+ 20. Creating a new segment  (0000000000017584-0000000000017628) ... ... OK
+ 21. Creating a new segment  (0000000000017628-0000000000017734) ... ... OK
+Adding relocations...
+Searching GOT loading... 1 items from 0 Ok
+Plan  FLIRT signature: ARM library little endian
+autoload.cfg: armlibl.sig autoloads armv12.til
+Type library 'armv12' loaded. Applying types...
+Types applied to 0 names.
+DWARF: File "/Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat" contains DWARF information.
+DWARF: Functions: 78 symbols applied
+DWARF: Globals: 14 symbols applied
+Marking typical code sequences...
+Flushing buffers, please wait...ok
+File '/Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat' has been successfully loaded into the database.
+ ARM AND THUMB MODE SWITCH INSTRUCTIONS
+
+ This processor has two instruction encodings: ARM and THUMB.
+ IDA allows to specify the encoding mode for every single instruction.
+ For this IDA uses a virtual register T. If its value is zero, then
+ the ARM mode is used, otherwise the THUMB mode is used.
+ You can change the value of the register T using
+ the 'change segment register value' command
+ (the canonical hotkey is Alt-G)
+ -> OK
+IDA is analysing the input file...
+You may start to explore the input file right now.
+~/Desktop/FIT/3LACFG_Generator/my_preprocess.py: does not exist -> OK
+Flushing buffers, please wait...ok
+Unloading IDP module /Applications/ida.app/Contents/MacOS/procs/arm64.dylib...
+You can't disassemble file with such an extension: /Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat.id1 -> OK
+You can't disassemble file with such an extension: /Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat.id2 -> OK
+You can't disassemble file with such an extension: /Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat.nam -> OK
+You can't disassemble file with such an extension: /Users/dosi/Desktop/FIT/Dataset/CoreUtils/coreutils_6.12_arm_O0_bin/cat.til -> OK
