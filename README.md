@@ -1,6 +1,12 @@
 # FIT: Inspect Vulnerabilities in Cross-Architecture Firmware by Deep Learning and Bipartite Matching
 
-## Environment
+## Prerequiste
+Make sure you have installed all of following packages or libraries (including dependencies if necessary) in your workspace:
+1. Tensorflow
+2. [gensim](https://radimrehurek.com/gensim/)
+3. [scikit-learn](https://scikit-learn.org/stable/index.html)
+4. pickle in python
+5. [IDA Pro](https://www.hex-rays.com/products/ida/)
 
 ## Dataset
 * OpenSSL in Instruction_Embedding/dataset/filtered_json_inst/
