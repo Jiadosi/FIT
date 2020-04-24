@@ -5,7 +5,7 @@ import datetime
 from sklearn.metrics import roc_auc_score
 from tensorflow.contrib import rnn
 
-import pdb
+# import pdb
 
 def block_embed(X_inst_embed, inst_num, inst_dim, n_hidden, name):  # X -- LSTM -- return
     X = tf.reshape(X_inst_embed, [-1, inst_num, inst_dim])  # [(batch_size*node_num), 35, 100]

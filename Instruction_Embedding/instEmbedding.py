@@ -8,7 +8,7 @@ import pandas as pd
 # from spicy.spatial import distance
 
 # preparing dataset
-def preparing(dirPath, filePath):
+def preparing(dirPath, fiPath):
     print('---preparing dataset---')
     for f in os.listdir(dirPath):
         filePath = ''
@@ -20,7 +20,7 @@ def preparing(dirPath, filePath):
         with open(filePath, 'r') as f:
             data = f.readlines()
         res = []
-        with open(filePath, 'a') as f:
+        with open(fiPath, 'a') as f:
             for line in data:
                 g = json.loads(line)
                 for bb in g['features']:
