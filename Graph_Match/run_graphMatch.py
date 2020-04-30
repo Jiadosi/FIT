@@ -1,6 +1,7 @@
 import os
 import json
 import argparse
+from datetime import datetime
 
 from cfg import *
 from basicBlock import *
@@ -57,7 +58,8 @@ def json2cfg(js):
 parser = argparse.ArgumentParser()
 parser.add_argument('--sus_dir', type=str, default='./suspicious/', help='path for suspicious files')
 parser.add_argument('--json_dir', type=str, default='./testwhole/', help='path for json files')
-parser.add_argument('--threashold', type=float, default=1.489, help='dissimilar score threashold') 
+parser.add_argument('--t', type=float, default=1.489, help='dissimilar score threashold') 
+parser.add_argument('--m', type=int, default=1, help='1 for staged, 2 for alone')
 
 
 if __name__ == "__main__":
@@ -65,26 +67,53 @@ if __name__ == "__main__":
     args = parser.parse_args()
     SUS_PATH = args.sus_dir
     JSON_PATH = args.json_dir
-    THREASHOLD = args.threashold
+    THREASHOLD = args.t
+    MODE = args.m
 
-    for bin_name in os.listdir(SUS_PATH):
-        print(bin_name)
-        with open(os.path.join(SUS_PATH, bin_name), 'r') as f:
-           s_funcs = f.read().strip().split('\n')
+    if MODE == 1:  # stage 2
+        for bin_name in os.listdir(SUS_PATH):
+            print(bin_name)
+            with open(os.path.join(SUS_PATH, bin_name), 'r') as f:
+               s_funcs = f.read().strip().split('\n')
 
-        a_cfgs = []
+            a_cfgs = []
 
-        json_name = bin_name + '_features.json'
-        with open(os.path.join(JSON_PATH, json_name), 'r') as f:
-            for line in f.readlines():
-                if len(s_funcs) != 0:
+            json_name = bin_name + '_features.json'
+            with open(os.path.join(JSON_PATH, json_name), 'r') as f:
+                for line in f.readlines():
+                    if len(s_funcs) != 0:
+                        cur_func = json.loads(line)
+                        if cur_func['fname'] in s_funcs:
+                            a_cfgs.append(json2cfg(cur_func))
+                            s_funcs.remove(cur_func['fname'])
+
+            t_cfg = json2cfg(json.loads(line))
+            # st = datetime.now()
+            for cfg in a_cfgs:
+                score = graph_match(t_cfg, cfg)
+                if score <= THREASHOLD:
+                    print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(cfg.function_name, t_cfg.function_name, score))
+            # print(datetime.now()-st)
+    elif MODE == 2:  # graph match alone
+        # debug
+        # tot = 0
+        # stt = datetime.now()
+        cfgs = []
+        for json_f in os.listdir(JSON_PATH):
+            # print(json_f)
+            # st = datetime.now()
+            with open(os.path.join(JSON_PATH, json_f), 'r') as f:
+                for line in f.readlines():
                     cur_func = json.loads(line)
-                    if cur_func['fname'] in s_funcs:
-                        a_cfgs.append(json2cfg(cur_func))
-                        s_funcs.remove(cur_func['fname'])
+                    cfgs.append(json2cfg(cur_func))
+            for g in cfgs[:-1]:
+                try:
+                    score = graph_match(g, cfgs[-1])
+                    if score <= THREASHOLD:
+                        print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(g.function_name, cfgs[-1].function_name, score))
+                except:
+                    print('\033[1;36mError in graph_match when processing {0}\033[0m'.format(g.function_name))
+                    
+            # print(datetime.now()-st)
+        # print(datetime.now()-stt)
 
-        t_cfg = json2cfg(json.loads(line))
-        for cfg in a_cfgs:
-            score = graph_match(t_cfg, cfg)
-            if score <= THREASHOLD:
-                print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(cfg.function_name, t_cfg.function_name, score))
