@@ -43,6 +43,8 @@ for fl in files:
                         fvec.append(toStDis) # 'toStDis'
                     fvec.append(cfg.g.node[i]['v'][9]) # 'toEdDis'
                     fvec.append(cfg.g.node[i]['v'][10]) # 'between'
+                    fvec.append(cfg.g.node[i]['v'][11])  # insts
+                    fvec.append(cfg.g.node[i]['v'][12])  # prepro insts
                     dic['features'].append(fvec)
                 dic['func_feature'] = cfg.fun_features[:-2]
 
