@@ -82,14 +82,14 @@ if __name__ == '__main__':
     print( "\033[1;36m{} graphs, {} functions\033[0m".format(len(Gs), len(classes)))
 
     if os.path.isfile('data/class_perm_{}_404.npy'.format(NODE_FEATURE_DIM)):
-        perm = np.load('data/class_perm_{}_404.npy'.format(NODE_FEATURE_DIM))
+        perm = np.load('./class_perm_{}_404.npy'.format(NODE_FEATURE_DIM))
     else:
         perm = np.random.permutation(len(classes))
-        np.save('data/class_perm_{}_404.npy'.format(NODE_FEATURE_DIM), perm)
+        np.save('./class_perm_{}_404.npy'.format(NODE_FEATURE_DIM), perm)
     # if len(perm) < len(classes):
     if len(perm) != len(classes):  # dosi
         perm = np.random.permutation(len(classes))
-        np.save('data/class_perm_{}_404.npy'.format(NODE_FEATURE_DIM), perm)
+        np.save('./class_perm_{}_404.npy'.format(NODE_FEATURE_DIM), perm)
 
     Gs_train, classes_train, Gs_dev, classes_dev, Gs_test, classes_test =\
             partition_data(Gs,classes,[0.8,0.1,0.1],perm)

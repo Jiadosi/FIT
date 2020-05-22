@@ -66,7 +66,7 @@ def display_allwords(model1, model2):
     plt.scatter(df['x'], df['y'], s=10, c='m')
     # for word, pos in df.iterrows():
     #     plt.annotate(word, pos, alpha=0.3, size=10)
-    plt.savefig('./x86_arm.png', format='png')
+    plt.savefig('./x86_arm1.pdf', format='pdf')
     
 def display_closestwords_tsnescatterplot(model, word, size):
 
@@ -104,8 +104,8 @@ def display_closestwords_tsnescatterplot(model, word, size):
     plt.xlim(x_coords.min()+1, x_coords.max()+500)
     plt.ylim(y_coords.min()+1, y_coords.max()+500)
 
-    plt.show()
-    # plt.savefig('./x86_sub.png', format='png')
+    #plt.show()
+    plt.savefig('./x86_sub.pdf', format='pdf')
 
 
 
@@ -122,6 +122,8 @@ if __name__ == "__main__":
     #model = loading(modelPath2)
     #print(model['mov~eax,<TAG>'])
     #print(model['mov~eax,<eax+0>'])
+    # display_allwords(model, model2)
+    # display_closestwords_tsnescatterplot(model, 'mov~eax,<TAG>', 100)  #'cmovz~ebx,ecx'
     '''
     # eval distance
     xtest = model['test~eax,eax']

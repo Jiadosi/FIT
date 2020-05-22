@@ -479,4 +479,6 @@ def print_arch_info(name, Gs):
 
 
 def get_key (dict, value):
-    return k for k, v in dict.items() if v == value
+    for k, v in dict.items():
+        if v == value:
+            return k
