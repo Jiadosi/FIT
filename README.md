@@ -10,7 +10,9 @@ Make sure you have installed all of following packages or libraries (including d
 
 ## Dataset
 * OpenSSL in Instruction_Embedding/dataset/filtered_json_inst/
-* CoreUtils in Dataset/CoreUtils/
+* CoreUtils in Dataset/CoreUtils/json/
+* FindUtils in Dataset/findutils.zip
+* BusyBox in Dataset/busybox.zip
 
 ## 3LACFG_Generator
 1. In run_ida_preprocess.py, config *ida_path* and *binary_dir*, which is your ida_bin path and the binaries dir path, respectively.
