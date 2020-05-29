@@ -32,10 +32,10 @@ Make sure you have installed all of following packages or libraries (including d
 ``python3 __train.py --save_path ./saved_model/405/ --w2v_model ../Instruction_Embedding/myModel/``
 2. The trained model will be stored in "./saved_model/". The AUC of FIT model is 0.97.
 3. In filter.py, config *load_path* which is the trained model path, and *top_similar* which means top N most similar functions. Run filter.py, get the similar score between function pairs and N suspicious vulnerable function names can be found in *check__dir*. Note that, the vulnerable binary function should be the last json item in the json file which store all the preprocessed functions from the under-test binary!  
-``python3 filter.py --load_path ./saved_model/405/graphnn-model_best --w2v_model ../Instruction_Embedding/myModel/ --top_similar 50 --check_dir ./suspicious/``
+``python3 filter.py --load_path ./saved_model/405/graphnn-model_best --w2v_path ../Instruction_Embedding/myModel/ --top_similar 50 --check_dir ./suspicious/``
 4. FUTURE WORK: BETTER WAY FOR FEATURE FUSION AND OF COURSE BETTER MODEL
 
 ## Graph_Match
 1. Run run_graphMatch.py, find the vulnerable functions' name printed in the terminal.  
-``python3 run_graphMatch --sus_dir ../Block_Graph_Embedding/suspicious/ --json_dir ../Instruction_Embedding/dataset/filtered_json_inst/ --threashold 1.5``
+``python3 run_graphMatch.py --sus_dir ../Block_Graph_Embedding/suspicious/ --json_dir ../Instruction_Embedding/dataset/filtered_json_inst/ --threashold 1.5``
 2. FUTURE WORK: BETTER BIPATITIE ALGORITHM OR DYNAMIC ANALYSIS
