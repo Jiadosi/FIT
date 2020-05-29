@@ -89,10 +89,15 @@ if __name__ == "__main__":
 
             t_cfg = json2cfg(json.loads(line))
             # st = datetime.now()
+            result = []
             for cfg in a_cfgs:
                 score = graph_match(t_cfg, cfg)
                 if score <= THREASHOLD:
-                    print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(cfg.function_name, t_cfg.function_name, score))
+                    result.append((cfg.function_name, score))
+                    # print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(cfg.function_name, t_cfg.function_name, score))
+            result = sorted(result, key=lambda x: x[1])
+            for i in result:
+                print('\033[1;36m{0} -- {1} score: {2}\033[0m'.format(i[0], t_cfg.function_name, i[1]))
             # print(datetime.now()-st)
     elif MODE == 2:  # graph match alone
         # debug
