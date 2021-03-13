@@ -39,3 +39,24 @@ Make sure you have installed all of following packages or libraries (including d
 1. Run run_graphMatch.py, find the vulnerable functions' name printed in the terminal.  
 ``python3 run_graphMatch.py --sus_dir ../Block_Graph_Embedding/suspicious/ --json_dir ../Instruction_Embedding/dataset/filtered_json_inst/ --threashold 1.5``
 2. FUTURE WORK: BETTER BIPATITIE ALGORITHM OR DYNAMIC ANALYSIS
+
+
+### Cite
+If you use FIT in scientific work, consider citing [our paper](https://www.sciencedirect.com/science/article/pii/S0167404820303059) presented at COSE'20:
+
+Bibtex:
+```
+@article{LIANG2020102032,
+title = {FIT: Inspect vulnerabilities in cross-architecture firmware by deep learning and bipartite matching},
+journal = {Computers & Security},
+volume = {99},
+pages = {102032},
+year = {2020},
+issn = {0167-4048},
+doi = {https://doi.org/10.1016/j.cose.2020.102032},
+url = {https://www.sciencedirect.com/science/article/pii/S0167404820303059},
+author = {Hongliang Liang and Zhuosi Xie and Yixiu Chen and Hua Ning and Jianli Wang},
+keywords = {firmware security, binary code, similarity detection, neural network, bipartite matching},
+abstract = {Widely deployed IoT devices expose serious security threats because the firmware in them contains vulnerabilities, which are difficult to detect due to two main factors: 1) The firmware’s code is usually not available; 2) A same vulnerability often exists in multiple firmware with different architectures and/or release versions. In this paper, we propose a novel neural network-based staged approach to inspect vulnerabilities in firmware, which first learns semantics in binary code and utilizes neural network model to screen out the potential vulnerable functions, then performs bipartite graph matching upon three-level features between two binary functions. We implement the approach in a tool called FIT and evaluation results show that FIT outperforms state-of-the-art approaches, i.e., Gemini, CVSSA and discovRE, on both effectiveness and efficiency. FIT also detects vulnerabilities in real-world firmware of IoT devices, such as D-Link routers. Moreover, we make our tool and dataset publicly available in the hope of facilitating further researches in the firmware security field.}
+}
+```
